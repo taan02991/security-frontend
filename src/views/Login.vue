@@ -32,7 +32,7 @@
               >Login</v-btn
             >
             <v-btn
-              @click="$router.push('/sign-up')"
+              @click="$router.push({name: 'SignUp'})"
               x-large
               color="primary"
               dark

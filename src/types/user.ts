@@ -12,19 +12,9 @@ export enum UserGetters {
 }
 
 export enum UserMutations {
-  fetching = 'fetching',
-  success = 'success',
-  error = 'error',
   setUser = 'setUser',
-  setPosts = 'setPosts'
 }
 
 export enum UserActions {
   fetchUser = 'fetchUser',
-  setFetching = 'setFetching',
-  setSuccess = 'setSuccess',
-  setError = 'setError',
-  updateProfile = 'updateProfile',
-  uploadImage = 'uploadImage',
-  fetchPosts = 'fetchPosts'
 }
