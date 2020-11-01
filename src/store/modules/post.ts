@@ -30,7 +30,7 @@ const mutations: MutationTree<PostState> = {
 }
 
 const actions: ActionTree<PostState, any> = {
-  [PostActions.fetchAllPost]: async ({ commit }) => {
+  [PostActions.fetchAllPosts]: async ({ commit }) => {
     try {
       const { data } = await axios.get('/post')
       commit(PostMutations.setPosts, data)

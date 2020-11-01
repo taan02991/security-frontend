@@ -6,11 +6,13 @@
     <v-text-field
       v-model="title"
       label="Title"
+      outlined
       required
     ></v-text-field>
     <v-textarea
       v-model="content"
       label="Content"
+      outlined
       required
       rows=10
     ></v-textarea>

@@ -27,6 +27,6 @@ export enum PostMutations {
 
 export enum PostActions {
     fetchPost = 'fetchPost',
-    fetchAllPost = 'fetchAllPost',
+    fetchAllPosts = 'fetchAllPost',
     createPost = 'createPost'
   }
