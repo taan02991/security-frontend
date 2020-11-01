@@ -6,7 +6,7 @@ import {
   AuthMutations,
   AuthGetters
 } from '@/types/auth'
-import { User, UserActions } from '@/types/user'
+import { UserActions } from '@/types/user'
 import { ActionTree, GetterTree, Module, MutationTree } from 'vuex'
 import router from '../../router'
 import axios from 'axios'
@@ -34,6 +34,7 @@ const actions: ActionTree<AuthState, any> = {
       const response = await axios.post('/auth/login', payload)
       commit(AuthMutations.setToken, response.data)
       await dispatch(AuthActions.setAxiosHeader)
+      await dispatch('user/' + UserActions.fetchUser, {}, { root: true })
       router.push({ name: 'Home' })
     } catch (error) {
       console.log(error)
@@ -47,6 +48,7 @@ const actions: ActionTree<AuthState, any> = {
       const response = await axios.post<string>('/auth/register', payload)
       commit(AuthMutations.setToken, response.data)
       await dispatch(AuthActions.setAxiosHeader)
+      await dispatch('user/' + UserActions.fetchUser, {}, { root: true })
       router.push({ name: 'Home' })
     } catch (error) {
       console.log(error)

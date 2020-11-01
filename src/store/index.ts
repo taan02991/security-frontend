@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import auth from '@/store/modules/auth'
-import { AuthState } from '../types/auth'
 import VuexPersistence from 'vuex-persist'
+import auth from '@/store/modules/auth'
+import user from '@/store/modules/user'
+import { AuthState } from '../types/auth'
 
 Vue.use(Vuex)
 
@@ -13,7 +14,8 @@ const vuexLocal = new VuexPersistence<AuthState>({
 
 export default new Vuex.Store({
   modules: {
-    auth
+    auth,
+    user
   },
   plugins: [vuexLocal.plugin]
 })

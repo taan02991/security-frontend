@@ -4,9 +4,6 @@ export interface User {
   role: string;
 }
 export interface UserState {
-  isLoading: boolean;
-  isSuccess: boolean;
-  isError: boolean;
   user: User | null;
 }
 

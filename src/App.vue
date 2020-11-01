@@ -11,16 +11,21 @@
 import Vue from 'vue'
 import HelloWorld from './components/HelloWorld.vue'
 import NavBar from '@/components/NavBar.vue'
+import Component from 'vue-class-component'
+import { AuthActions, AuthGetters } from './types/auth'
+import { Action, Getter, namespace } from 'vuex-class'
+const authModule = namespace('auth')
 
-export default Vue.extend({
-  name: 'App',
-
+@Component({
   components: {
     NavBar
-  },
-
-  data: () => ({
-    //
-  })
+  }
 })
+export default class App extends Vue {
+  @authModule.Getter(AuthGetters.isLogin) private isLogin!: () => boolean;
+  @authModule.Action(AuthActions.VerifyToken) private verifyToken!: () => void;
+  beforeMount () {
+    this.verifyToken()
+  }
+}
 </script>

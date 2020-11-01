@@ -32,7 +32,12 @@
           </v-card-text>
           <div class="d-flex justify-center my-2">
             <v-container fluid>
-              <v-btn x-large color="primary" dark block
+              <v-btn
+                x-large
+                color="primary"
+                block
+                :disabled="password!==password2 || !username"
+                @click=submit()
                 >Sign up</v-btn
               >
             </v-container>
@@ -46,11 +51,25 @@
 <script lang="ts">
 import { Vue } from 'vue-property-decorator'
 import Component from 'vue-class-component'
+import { Action, namespace } from 'vuex-class'
+import { AuthActions, SignUpCredentials } from '../types/auth'
+const authModule = namespace('auth')
 
 @Component
 export default class SignUp extends Vue {
+  @authModule.Action(AuthActions.signUp) private signUp!: (
+    credential: SignUpCredentials
+  ) => void;
+
   private username = '';
   private password = '';
   private password2 = '';
+
+  submit () {
+    this.signUp({
+      username: this.username,
+      password: this.password
+    })
+  }
 }
 </script>
