@@ -4,7 +4,7 @@
       <v-col cols="12" sm="8" md="4">
         <v-card>
           <v-card-text>
-            <div class="text-h3">Register</div>
+            <div class="text-h3">Sign up</div>
           </v-card-text>
           <v-card-text>
             <v-form>
@@ -33,7 +33,7 @@
           <div class="d-flex justify-center my-2">
             <v-container fluid>
               <v-btn x-large color="primary" dark block
-                >Register</v-btn
+                >Sign up</v-btn
               >
             </v-container>
           </div>
@@ -48,7 +48,7 @@ import { Vue } from 'vue-property-decorator'
 import Component from 'vue-class-component'
 
 @Component
-export default class Register extends Vue {
+export default class SignUp extends Vue {
   private username = '';
   private password = '';
   private password2 = '';

@@ -23,7 +23,7 @@
               ></v-text-field>
             </v-form>
             <v-btn
-              @click="logInButtonHandler"
+              @click="submit"
               class="my-2"
               x-large
               color="success"
@@ -32,12 +32,12 @@
               >Login</v-btn
             >
             <v-btn
-              @click="$router.push('/register')"
+              @click="$router.push('/sign-up')"
               x-large
               color="primary"
               dark
               block
-              >Register</v-btn
+              >Sign up</v-btn
             >
           </v-card-text>
         </v-card>
@@ -49,10 +49,23 @@
 <script lang="ts">
 import { Vue } from 'vue-property-decorator'
 import Component from 'vue-class-component'
+import { Action, namespace } from 'vuex-class'
+import { AuthActions, LoginCredentials } from '../types/auth'
+const authModule = namespace('auth')
 
 @Component
 export default class Login extends Vue {
   private username = '';
   private password = '';
+  @authModule.Action(AuthActions.login) private login!: (
+    credential: LoginCredentials
+  ) => void;
+
+  submit () {
+    this.login({
+      username: this.username,
+      password: this.password
+    })
+  }
 }
 </script>
