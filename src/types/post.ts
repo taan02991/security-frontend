@@ -1,4 +1,5 @@
-import { User } from '@/types/user.ts'
+import { User } from '@/types/user'
+import { Comment } from '@/types/comment'
 
 export interface Post {
     _id: string;
@@ -16,13 +17,16 @@ export interface PostForm {
 
 export interface PostState {
     posts: Post[];
+    post: Post | null;
+    comments: Comment[];
   }
 
 export enum PostGetters {
   }
 
 export enum PostMutations {
-      setPosts = 'setPosts'
+      setPosts = 'setPosts',
+      setPost = 'setPost'
   }
 
 export enum PostActions {

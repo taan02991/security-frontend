@@ -17,6 +17,8 @@ import router from '../../router'
 import axios from 'axios'
 
 const state: PostState = {
+  post: null,
+  comments: [],
   posts: []
 }
 
@@ -26,6 +28,10 @@ const getters: GetterTree<PostState, any> = {
 const mutations: MutationTree<PostState> = {
   [PostMutations.setPosts]: (state: PostState, data) => {
     state.posts = data
+  },
+  [PostMutations.setPost]: (state: PostState, data) => {
+    state.post = data
+    state.comments = data.comments
   }
 }
 
@@ -34,6 +40,14 @@ const actions: ActionTree<PostState, any> = {
     try {
       const { data } = await axios.get('/post')
       commit(PostMutations.setPosts, data)
+    } catch (err) {
+      console.log(err)
+    }
+  },
+  [PostActions.fetchPost]: async ({ commit }, id) => {
+    try {
+      const { data } = await axios.get('/post/' + id + '?comments=true')
+      commit(PostMutations.setPost, data)
     } catch (err) {
       console.log(err)
     }

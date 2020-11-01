@@ -1,6 +1,5 @@
 <template>
-  <v-container>
-  <v-card
+  <div
     class="pa-3"
   >
     <v-text-field
@@ -8,13 +7,15 @@
       label="Title"
       outlined
       required
+      dense
     ></v-text-field>
     <v-textarea
       v-model="content"
       label="Content"
       outlined
       required
-      rows=10
+      rows=3
+      dense
     ></v-textarea>
     <div class="d-flex">
         <v-btn
@@ -23,30 +24,30 @@
         :disabled="!content || !title"
         @click="submit"
         >
-        Post
+        Comment
         </v-btn>
     </div>
-  </v-card>
-  </v-container>
+  </div>
 </template>
 
 <script lang="ts">
-import { Vue } from 'vue-property-decorator'
+import { Vue, Prop } from 'vue-property-decorator'
 import Component from 'vue-class-component'
 import { Action, namespace } from 'vuex-class'
-import { PostActions, PostForm } from '@/types/post'
-const postModule = namespace('post')
+import { CommentActions, CommentForm } from '@/types/comment'
+const commentModule = namespace('comment')
 
 @Component
-export default class CreatePost extends Vue {
+export default class CommentInput extends Vue {
   private title = '';
   private content = '';
-  @postModule.Action(PostActions.createPost) private createPost!: (
-    payload: PostForm
+  @Prop(Number) readonly id!: string
+  @commentModule.Action(CommentActions.createComment) private createComment!: (
+    payload: CommentForm
   ) => void;
 
   submit () {
-    this.createPost({ title: this.title, content: this.content })
+    this.createComment({ title: this.title, content: this.content, postId: this.id })
   }
 }
 </script>
