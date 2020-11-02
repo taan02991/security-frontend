@@ -18,3 +18,8 @@ export enum UserMutations {
 export enum UserActions {
   fetchUser = 'fetchUser',
 }
+
+export enum UserRoles {
+  admin = 'admin',
+  user = 'user'
+}
