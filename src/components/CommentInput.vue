@@ -35,7 +35,9 @@ import { Vue, Prop } from 'vue-property-decorator'
 import Component from 'vue-class-component'
 import { Action, namespace } from 'vuex-class'
 import { CommentActions, CommentForm } from '@/types/comment'
+import { PostActions } from '@/types/post'
 const commentModule = namespace('comment')
+const postModule = namespace('post')
 
 @Component
 export default class CommentInput extends Vue {
@@ -46,8 +48,15 @@ export default class CommentInput extends Vue {
     payload: CommentForm
   ) => void;
 
-  submit () {
-    this.createComment({ title: this.title, content: this.content, postId: this.id })
+  @postModule.Action(PostActions.fetchPost) private fetchPost!: (
+    id: string
+  ) => void;
+
+  async submit () {
+    await this.createComment({ title: this.title, content: this.content, postId: this.id })
+    await this.fetchPost(this.id)
+    this.title = ''
+    this.content = ''
   }
 }
 </script>

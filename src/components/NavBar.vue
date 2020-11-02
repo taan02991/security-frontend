@@ -5,7 +5,9 @@
       dense
       dark
     >
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+      <v-btn icon @click="$router.push({name: 'Home'})">
+        <v-icon>mdi-home</v-icon>
+      </v-btn>
 
       <v-toolbar-title @>Security Blog</v-toolbar-title>
 

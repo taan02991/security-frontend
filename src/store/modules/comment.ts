@@ -32,6 +32,13 @@ const actions: ActionTree<CommentState, any> = {
     } catch (err) {
       console.log(err)
     }
+  },
+  [CommentActions.deleteComment]: async ({ commit }, id) => {
+    try {
+      await axios.delete('/comment/' + id)
+    } catch (err) {
+      console.log(err)
+    }
   }
 }
 

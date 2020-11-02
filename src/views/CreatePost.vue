@@ -1,6 +1,6 @@
 <template>
   <v-container>
-  <v-card
+  <div
     class="pa-3"
   >
     <v-text-field
@@ -26,7 +26,7 @@
         Post
         </v-btn>
     </div>
-  </v-card>
+  </div>
   </v-container>
 </template>
 

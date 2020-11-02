@@ -32,5 +32,6 @@ export enum PostMutations {
 export enum PostActions {
     fetchPost = 'fetchPost',
     fetchAllPosts = 'fetchAllPost',
-    createPost = 'createPost'
+    createPost = 'createPost',
+    deletePost = 'deletePost'
   }

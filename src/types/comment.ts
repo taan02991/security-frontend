@@ -26,5 +26,6 @@ export enum CommentMutations {
   }
 
 export enum CommentActions {
-    createComment = 'createComment'
+    createComment = 'createComment',
+    deleteComment = 'deleteComment'
   }

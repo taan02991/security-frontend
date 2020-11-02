@@ -59,6 +59,14 @@ const actions: ActionTree<PostState, any> = {
     } catch (err) {
       console.log(err)
     }
+  },
+  [PostActions.deletePost]: async ({ commit }, id) => {
+    try {
+      await axios.delete('/post/' + id)
+      router.push({ name: 'Home' })
+    } catch (err) {
+      console.log(err)
+    }
   }
 }
 
