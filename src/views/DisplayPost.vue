@@ -1,14 +1,15 @@
 <template>
-  <v-container fluid style='width:50%' v-if='post'>
+  <v-container fluid style='width:50%' v-if='post && user'>
       <h1>{{post.title}}</h1>
       <p>{{post.author.username}}</p>
-      <p>{{post.content}}</p>
+      <p class="text-justify">{{post.content}}</p>
       <small>Created: {{post.createdAt}}</small>
       <br>
       <small>Updated: {{post.updatedAt}}</small>
       <br>
       <div class="d-flex">
         <v-btn
+        v-if='user.username===post.author.username || user.role==="moderator"'
         class="ml-auto"
         color="success"
         @click="$router.push({name: 'EditPost', params: {id: post.id}})"
@@ -16,6 +17,7 @@
         EDIT
         </v-btn>
         <v-btn
+        v-if='user.username===post.author.username || user.role==="moderator"'
         class="ml-2"
         color="error"
         @click="onDeletePost"
