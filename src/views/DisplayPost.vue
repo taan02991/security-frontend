@@ -11,7 +11,7 @@
         <v-btn
         class="ml-auto"
         color="success"
-        @click="onEditPost"
+        @click="$router.push({name: 'EditPost', params: {id: post.id}})"
         >
         EDIT
         </v-btn>
@@ -39,6 +39,7 @@
               <v-icon
                 color="black"
                 dark
+                @click="onEditComment(comment)"
               >
                 mdi-pencil
               </v-icon>
@@ -56,6 +57,7 @@
         </v-list>
         <v-divider class="my-2"></v-divider>
         <comment-input :id='post.id'></comment-input>
+        <comment-edit-dialog></comment-edit-dialog>
 
   </v-container>
 </template>
@@ -65,16 +67,19 @@ import { Vue, Prop } from 'vue-property-decorator'
 import Component from 'vue-class-component'
 import { Action, namespace } from 'vuex-class'
 import CommentInput from '@/components/CommentInput.vue'
+import CommentEditDialog from '@/components/CommentEditDialog.vue'
 import { PostState, PostActions, PostForm, Post } from '@/types/post'
 import { User } from '@/types/user'
-import { Comment, CommentActions } from '@/types/comment'
+import { Comment, CommentActions, CommentForm } from '@/types/comment'
+import { component } from 'vue/types/umd'
 const postModule = namespace('post')
 const commentModule = namespace('comment')
 const userModule = namespace('user')
 
 @Component({
   components: {
-    CommentInput
+    CommentInput,
+    CommentEditDialog
   }
 })
 export default class DisplayPost extends Vue {
@@ -86,16 +91,35 @@ export default class DisplayPost extends Vue {
       id: string
     ) => void;
 
+  @commentModule.Action(CommentActions.editComment) private editComment!: (
+      payload: Comment
+    ) => void;
+
   @commentModule.Action(CommentActions.deleteComment) private deleteComment!: (
     id: string
+  ) => void;
+
+  @commentModule.Action(CommentActions.setComment) private setComment!: (
+    comment: Comment
+  ) => void;
+
+  @commentModule.Action(CommentActions.setDialog) private setDialog!: (
+    dialog: boolean
   ) => void;
 
   @postModule.State('post') private post!: Post
   @postModule.State('comments') private comments!: Comment[]
   @userModule.State('user') private user!: User
+  @commentModule.State('commnet') private comment!: Comment
+  @commentModule.State('dialog') private dialog!: boolean
 
   mounted () {
     this.fetchPost(this.$route.params.id)
+  }
+
+  async onEditComment (comment: Comment) {
+    this.setComment(comment)
+    this.setDialog(true)
   }
 
   async onDeleteComment (id: string) {

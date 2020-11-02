@@ -67,6 +67,14 @@ const actions: ActionTree<PostState, any> = {
     } catch (err) {
       console.log(err)
     }
+  },
+  [PostActions.editPost]: async ({ commit, state }, id) => {
+    try {
+      await axios.put('/post/' + id, state.post)
+      router.push('/post/' + id)
+    } catch (err) {
+      console.log(err)
+    }
   }
 }
 

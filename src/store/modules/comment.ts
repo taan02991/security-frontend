@@ -2,7 +2,9 @@ import {
   CommentState,
   CommentGetters,
   CommentMutations,
-  CommentActions
+  CommentActions,
+  CommentForm,
+  Comment
 } from '@/types/comment'
 
 import {
@@ -15,13 +17,20 @@ import {
 import axios from 'axios'
 
 const state: CommentState = {
-  a: 'asd'
+  comment: null,
+  dialog: false
 }
 
 const getters: GetterTree<CommentState, any> = {
 }
 
 const mutations: MutationTree<CommentState> = {
+  [CommentMutations.setComment]: (state, comment: Comment) => {
+    state.comment = comment
+  },
+  [CommentMutations.setDialog]: (state, dialog: boolean) => {
+    state.dialog = dialog
+  }
 }
 
 const actions: ActionTree<CommentState, any> = {
@@ -39,6 +48,20 @@ const actions: ActionTree<CommentState, any> = {
     } catch (err) {
       console.log(err)
     }
+  },
+  [CommentActions.editComment]: async ({ commit, state }) => {
+    if (state.comment == null) return
+    try {
+      await axios.put('/comment/' + state.comment.id, { title: state.comment.title, content: state.comment.content })
+    } catch (err) {
+      console.log(err)
+    }
+  },
+  [CommentActions.setComment]: async ({ commit }, comment: Comment) => {
+    commit(CommentMutations.setComment, comment)
+  },
+  [CommentActions.setDialog]: async ({ commit }, dialog: boolean) => {
+    commit(CommentMutations.setDialog, dialog)
   }
 }
 

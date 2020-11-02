@@ -1,7 +1,7 @@
 import { User } from '@/types/user'
 
 export interface Comment {
-    _id: string;
+    id: string;
     title: string;
     content: string;
     createdAt: string;
@@ -16,16 +16,22 @@ export interface CommentForm {
   }
 
 export interface CommentState {
-    a: string;
+    dialog: boolean;
+    comment: Comment | null;
 }
 
 export enum CommentGetters {
   }
 
 export enum CommentMutations {
+  setComment = 'setComment',
+  setDialog = 'setDialog'
   }
 
 export enum CommentActions {
     createComment = 'createComment',
-    deleteComment = 'deleteComment'
+    deleteComment = 'deleteComment',
+    editComment = 'editComment',
+    setComment = 'setComment',
+    setDialog = 'setDialog'
   }

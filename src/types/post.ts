@@ -33,5 +33,6 @@ export enum PostActions {
     fetchPost = 'fetchPost',
     fetchAllPosts = 'fetchAllPost',
     createPost = 'createPost',
-    deletePost = 'deletePost'
+    deletePost = 'deletePost',
+    editPost = 'editPost'
   }

@@ -5,6 +5,7 @@ import Login from '../views/Login.vue'
 import SignUp from '../views/SignUp.vue'
 import CreatePost from '../views/CreatePost.vue'
 import DisplayPost from '../views/DisplayPost.vue'
+import EditPost from '../views/EditPost.vue'
 import store from '@/store'
 
 Vue.use(VueRouter)
@@ -34,6 +35,11 @@ const routes: Array<RouteConfig> = [
     path: '/post/:id',
     name: 'DisplayPost',
     component: DisplayPost
+  },
+  {
+    path: '/post/edit/:id',
+    name: 'EditPost',
+    component: EditPost
   }
 ]
 
