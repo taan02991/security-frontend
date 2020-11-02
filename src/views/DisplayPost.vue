@@ -9,7 +9,7 @@
       <br>
       <div class="d-flex">
         <v-btn
-        v-if='user.username===post.author.username || user.role===UserRoles.admin'
+        v-if='user.username===post.author.username || user.role==="admin"'
         class="ml-auto"
         color="success"
         @click="$router.push({name: 'EditPost', params: {id: post.id}})"
@@ -17,7 +17,7 @@
         EDIT
         </v-btn>
         <v-btn
-        v-if='user.username===post.author.username || user.role===UserRoles.admin'
+        v-if='user.username===post.author.username || user.role==="admin"'
         class="ml-2"
         color="error"
         @click="onDeletePost"
@@ -37,7 +37,7 @@
             </small>
             <v-list-item-subtitle>By: {{comment.author.username}} Created: {{comment.createdAt}}</v-list-item-subtitle>
             </v-list-item-content>
-            <v-btn icon v-if='user.username===comment.author.username || user.role===UserRoles.admin'>
+            <v-btn icon v-if='user.username===comment.author.username || user.role==="admin"'>
               <v-icon
                 color="black"
                 dark
@@ -46,7 +46,7 @@
                 mdi-pencil
               </v-icon>
             </v-btn>
-            <v-btn icon v-if='user.username===comment.author.username || user.role===UserRoles.admin' >
+            <v-btn icon v-if='user.username===comment.author.username || user.role==="admin"' >
               <v-icon
                 color="black"
                 dark
@@ -71,7 +71,7 @@ import { Action, namespace } from 'vuex-class'
 import CommentInput from '@/components/CommentInput.vue'
 import CommentEditDialog from '@/components/CommentEditDialog.vue'
 import { PostState, PostActions, PostForm, Post } from '@/types/post'
-import { User, UserRoles } from '@/types/user'
+import { User } from '@/types/user'
 import { Comment, CommentActions, CommentForm } from '@/types/comment'
 import { component } from 'vue/types/umd'
 const postModule = namespace('post')
