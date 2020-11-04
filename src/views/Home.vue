@@ -40,7 +40,7 @@ export default class Home extends Vue {
 </script>
 
 <style scoped>
-.v-container {
+.container {
   max-width: 608px !important;
 }
 </style>
