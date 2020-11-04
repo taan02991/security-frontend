@@ -1,5 +1,5 @@
 <template>
-<v-container fluid style="width:50%">
+<v-container>
   <v-list
       three-line
     >
@@ -38,3 +38,9 @@ export default class Home extends Vue {
   }
 }
 </script>
+
+<style scoped>
+.v-container {
+  max-width: 608px !important;
+}
+</style>
