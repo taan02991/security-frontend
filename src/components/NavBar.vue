@@ -13,12 +13,12 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn class="mr-1" @click="$router.push({name: 'CreatePost'})">
-        Post
+      <v-btn icon class="mr-1" @click="$router.push({name: 'CreatePost'})">
+        <v-icon>mdi-plus</v-icon>
       </v-btn>
 
-      <v-btn @click="SignOutButtonHandler">
-        Sign out
+      <v-btn icon @click="SignOutButtonHandler">
+        <v-icon>mdi-logout</v-icon>
       </v-btn>
     </v-app-bar>
   </div>
