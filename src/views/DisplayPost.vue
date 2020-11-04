@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid style='width:50%' v-if='post && user'>
+  <v-container v-if='post && user'>
       <h1>{{post.title}}</h1>
       <p>{{post.author.username}}</p>
       <p class="text-justify">{{post.content}}</p>
@@ -134,3 +134,9 @@ export default class DisplayPost extends Vue {
   }
 }
 </script>
+
+<style scoped>
+.container {
+  max-width: 608px !important;
+}
+</style>
