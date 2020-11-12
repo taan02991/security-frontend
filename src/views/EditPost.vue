@@ -58,8 +58,8 @@ export default class EditPost extends Vue {
 
   async beforeMount () {
     this.fetchPost(this.$route.params.id)
-    if(!this.post || this.post.author._id !== this.user._id && this.user.role !== 'admin') {
-      this.$router.push({name: 'Home'})
+    if (!this.post || (this.post.author._id !== this.user._id && this.user.role !== 'admin')) {
+      this.$router.push({ name: 'Home' })
     }
   }
 }
