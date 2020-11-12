@@ -43,6 +43,7 @@ const userModule = namespace('user')
 @Component
 export default class EditPost extends Vue {
   @postModule.State('post') private post!: Post
+  @userModule.State('user') private user!: User
   @postModule.Action(PostActions.fetchPost) private fetchPost!: (
     id: string
   ) => void;
@@ -57,6 +58,9 @@ export default class EditPost extends Vue {
 
   async beforeMount () {
     this.fetchPost(this.$route.params.id)
+    if(!this.post || this.post.author._id !== this.user._id && this.user.role !== 'admin') {
+      this.$router.push({name: 'Home'})
+    }
   }
 }
 </script>
