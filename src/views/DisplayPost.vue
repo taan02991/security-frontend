@@ -115,7 +115,7 @@ export default class DisplayPost extends Vue {
   @commentModule.State('commnet') private comment!: Comment
   @commentModule.State('dialog') private dialog!: boolean
 
-  mounted () {
+  async beforeMount () {
     this.fetchPost(this.$route.params.id)
   }
 

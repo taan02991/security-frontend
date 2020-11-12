@@ -55,7 +55,7 @@ export default class EditPost extends Vue {
     this.editPost(this.$route.params.id)
   }
 
-  mounted () {
+  async beforeMount () {
     this.fetchPost(this.$route.params.id)
   }
 }
